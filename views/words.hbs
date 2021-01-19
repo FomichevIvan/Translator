@@ -1,0 +1,135 @@
+<h2>WORDS TO LEARN</h2>
+
+<div class="center">
+  <div class="container">
+    <a href="/words"> <button class="btn btn-dark bigger">Список слов</button> </a>
+
+    <a href="/"> <button class="btn btn-dark bigger">На главную</button> </a>
+
+    <a href="/words/new"> <button class="btn btn-dark bigger">Добавить слово</button> </a>
+
+
+  </div>
+
+  <div class="container hide-show">
+    <div>
+      <button id="hideAll" class="btn btn-outline-dark bigger">Cлово <svg width="1.5em" height="1.5em"
+          viewBox="0 0 16 16" class="bi bi-toggles" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M4.5 9a3.5 3.5 0 1 0 0 7h7a3.5 3.5 0 1 0 0-7h-7zm7 6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-7-14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm2.45 0A3.49 3.49 0 0 1 8 3.5 3.49 3.49 0 0 1 6.95 6h4.55a2.5 2.5 0 0 0 0-5H6.95zM4.5 0h7a3.5 3.5 0 1 1 0 7h-7a3.5 3.5 0 1 1 0-7z" />
+        </svg></button>
+    </div>
+    <div>
+      <button id="hideAllTransl" class="btn btn-outline-dark bigger">Перевод <svg width="1.5em" height="1.5em"
+          viewBox="0 0 16 16" class="bi bi-toggles" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M4.5 9a3.5 3.5 0 1 0 0 7h7a3.5 3.5 0 1 0 0-7h-7zm7 6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-7-14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm2.45 0A3.49 3.49 0 0 1 8 3.5 3.49 3.49 0 0 1 6.95 6h4.55a2.5 2.5 0 0 0 0-5H6.95zM4.5 0h7a3.5 3.5 0 1 1 0 7h-7a3.5 3.5 0 1 1 0-7z" />
+        </svg></button>
+    </div>
+
+  </div>
+</div>
+
+<div class="cards">
+  {{#each cards}}
+  <div class="word bottom box box-1 boxShadow" id="{{_id}}">
+    <div class="cont">
+      <div>
+        <a class="btn btn-outline-primary" href="/words/{{_id}}"> <svg width="1.5em" height="1.5em" viewBox="0 0 16 16"
+          class="bi bi-eye" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z" />
+          <path fill-rule="evenodd"
+            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+        </svg></a>
+      </div>
+      <div class="bin"><a class=" del btn btn-outline-danger bot" href="/words/{{_id}}">Удалить</a></div>
+    </div>
+    <div>Слово: <span class="hideWord bolder">{{incomeText}}</span><span class="left"><input type="button"
+          class="butbut hide btn btn-sm btn-outline-dark " value="Скрыть/Показать" /></span></div>
+    <div>Перевод: <span class="hideWordTr bolder">{{outcomeText}}</span><span class="left"><input type="button"
+          class="butbut hide btn btn-sm btn-outline-dark " value="Скрыть/Показать" /></span></div>
+    <div><span>Тэг: </span><span class="italic">{{tag}} </span><input type="button"
+        class="butbut left tag btn btn-sm btn-outline-dark " value="Сортировать" /></div>
+
+  </div>
+
+  {{/each}}
+
+
+
+</div>
+
+<script>
+  document.addEventListener('click', async (e) => {// вешаем один слушатель на все события по клику
+      console.log(e.target)
+
+    if (e.target.classList.contains('del')) {// удалить элемент
+     
+      e.preventDefault()
+      
+      const id = e.target.parentNode.parentNode.parentNode.id// выясняем, какой именно id помечен на удаление
+      console.log(e.target.parentNode.parentNode.parentNode)
+
+      const resToDel = await fetch(`/words/${id}`, {// шлем на бэк с методом ДЕЛИТ
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+      })
+      document.getElementById(`${id}`).remove();// если приходит положительный ответ от бэка, удаляем элемент из ДОМ
+
+
+
+    }
+
+    if (e.target.classList.contains('tag')) {// скрываем все, кроме указанных тэгов
+      e.preventDefault()
+      const tag = e.target.parentNode.children[1].innerText// получаем текст, записанный в тэг
+
+      const array = document.querySelectorAll('.word')// проходим по всем карточкам, собираем массив
+      array.forEach(word => {// если в спане[5] текст НЕ совпадает с тэгом, то скрываем
+        if (word.getElementsByTagName('span')[5].innerText !== tag) {
+          word.classList.toggle('hiddenWord')
+        }
+
+
+
+      })
+   
+    }
+
+    if (e.target.classList.contains('hide')) {// скрывать или показывать слова для изучения
+      e.preventDefault()
+      const divToHide = e.target.parentNode.parentNode.children[0]
+
+      divToHide.classList.toggle('hiddenSpan')
+
+    }
+
+  })
+  // скрываем все непереведенные слова
+  const hideAllBut = document.getElementById('hideAll')
+  hideAllBut.addEventListener('click', (e) => {
+    e.preventDefault()
+    const arrayHide = document.querySelectorAll('.hideWord')
+    arrayHide.forEach(word => {
+      word.classList.toggle('hiddenSpan')
+    })
+
+  })
+
+  // скрываем  перевод всех слов
+  const hideAllTrBut = document.getElementById('hideAllTransl')
+  hideAllTrBut.addEventListener('click', (e) => {
+    e.preventDefault()
+    const arrayHide = document.querySelectorAll('.hideWordTr')
+    arrayHide.forEach(word => {
+      word.classList.toggle('hiddenSpan')
+    })
+
+  })
+
+
+</script>

@@ -1,0 +1,15 @@
+<h2>Words by tag</h2>
+<a href="/words"> К списку слов</a>
+<p></p>
+<p></p>
+
+
+{{#each cards}}
+ <div style="border-bottom: 1px solid black;">
+     <a href="/words/{{_id}}"> Перейти</a>
+        <div>Слово: {{incomeText}}</div> 
+        <div>Перевод: {{outcomeText}}</div>
+        <div >Тэг: {{tag}} </div>
+ </div>
+      
+    {{/each}}

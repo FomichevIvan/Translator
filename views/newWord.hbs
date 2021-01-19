@@ -1,0 +1,161 @@
+<h2>New word!</h2>
+<p></p>
+<p></p>
+
+<a href="/words"> <button class="bot btn btn-dark">Список слов</button> </a>
+<p> </p>
+<P></P>
+<hr style="width: 60%;">
+<div>
+  <div>
+    <form id="words" action="/words/new" method="post">
+      <div>
+         <label><h3>Перевести на:</h3></label><br>
+        <input type="radio" value="en" name="lang"/> английский
+        <input type="radio" value="ru" name="lang" checked/> русский<br>
+
+        <p> </p>
+        <P></P>
+
+<div class="input-group mb-3 long">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Слово</span>
+  </div>
+  <input type="text" placeholder="введите слово" name="word" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+
+
+        {{!-- <label>Слово:</label><br>
+        <input type="text" placeholder="введите слово" name="word" /><br>
+      </div> --}}
+      <p></p>
+      <div>
+        <input class="btn btn-outline-dark" type="submit" value="Перевести!" />
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="container" id="div"><div/>
+
+<script>
+
+  const words = document.getElementById('words')
+  const div = document.getElementById('div')
+
+// останавливаем отправку формы
+  words.addEventListener('submit', async (e) => {
+    e.preventDefault()
+//получаем данные из формы
+    const word = words.word.value
+    const lang = words.lang.value
+
+    console.log(word, lang)
+
+// отправляем данные на бэк
+    try {
+      const res = await fetch(words.action, {
+        method: "POST",
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ word, lang })
+      })
+//получаем с бэка и преобразуем
+      const result = await res.json()
+      console.log(result)
+      words.word.value = ''// очищаем форму
+
+
+
+// добавляем полученные данные на фрон в специальный див
+     
+
+      const newDiv = document.createElement('div')// по очереди создаем элементы, размещенные в форме. Это сам див, где все будет размещаться
+      const inSpan = document.createElement('span')//спан для входящего текста
+      const middle = document.createElement('span')//спан для разделителя
+      const outSpan = document.createElement('span')// спан исходящего текста
+      const inp = document.createElement('input')// поле ввода текста
+   
+      const sendBut = document.createElement('button')//кнопка отправки
+      sendBut.innerText= 'Add'// текст для кнопки
+      {{!-- sendBut.classList.add('add') --}}
+      {{!-- sendBut.classList.add('btn') --}}
+      sendBut.className='btn btn-outline-dark add'
+      inp.classList.add('form-control')
+      inp.classList.add('short')
+      newDiv.classList.add('line')
+      outSpan.classList.add('translated')
+      inSpan.classList.add('income')
+      middle.classList.add('mid')
+
+      {{!-- sendBut.classList.add('btn btn-outline-dark') --}}
+    
+      inp.setAttribute('placeholder', 'добавить тэг')// добавляем аттрибут
+      inSpan.innerText = result.text// текст для входящего спана - это текст из объекта, который мы получили с бэка
+      outSpan.innerText = result.translation// см.выше
+      middle.innerText = ' >>> '
+
+      newDiv.appendChild(inSpan)//кпепим 
+      newDiv.appendChild(middle)
+      newDiv.appendChild(outSpan)
+      newDiv.appendChild(inp)
+      newDiv.append(sendBut)
+      div.appendChild(newDiv)
+
+
+    } catch (err) {
+
+      console.log(err)
+    }
+
+
+
+  })
+
+
+// останавливаем отправку по кнопке ДОБАВИТЬ
+  document.addEventListener('click',async  (e) => {
+    if (e.target.classList.contains('add')) {
+      e.preventDefault()
+      const a = e.target.parentNode
+      let incomeText = a.querySelectorAll('span')[0].innerText//получаем данные из помещенного в див слова
+      let outcomeText = a.querySelectorAll('span')[2].innerText//получаем данные из помещенного в див слова
+      let tag = a.querySelector('input').value
+      let input = a.querySelector('input')
+      let buttonAdd = a.querySelector('button')
+      console.log(incomeText)
+      console.log(outcomeText)
+      console.log(tag)
+      input.disabled="true"// блокируем введенный тэг
+      buttonAdd.disabled="true"// блокируем кнопку от повторной отправки
+
+      if(tag =="") {// проверка на пустой тэг(чтобы назначилось значение по умолчанию)
+        tag = undefined
+      }
+
+
+
+        const sendRes = await fetch('new/add', {
+        method: "POST",
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ incomeText, outcomeText, tag })
+      })
+      
+      const sendResult = await sendRes.json()
+      console.log(sendResult)
+
+
+
+    }
+
+    
+         
+      
+     
+
+   
+
+
+  })
+
+</script>
