@@ -10,3 +10,5 @@ App for new words translating and trainig
 
 
 https://github.com/FomichevIvan/Translator/tree/master/img/words.png
+https://github.com/FomichevIvan/Translator/tree/master/img/translate.png
+https://github.com/FomichevIvan/Translator/tree/master/img/wellcome.png
