@@ -9,6 +9,9 @@ App for new words translating and trainig
 6. Технологии: Node.js, CSS, HBS, MongoAtlas
 
 
-<img src="https://github.com/FomichevIvan/Translator/tree/master/img/words.png">
-https://github.com/FomichevIvan/Translator/tree/master/img/translate.png
-https://github.com/FomichevIvan/Translator/tree/master/img/wellcome.png
+<img src="https://github.com/FomichevIvan/Translator/blob/master/img/words.png" width="70%">
+<hr>
+<img src="https://github.com/FomichevIvan/Translator/blob/master/img/translate.png" width="70%">
+<hr>
+<img src="https://github.com/FomichevIvan/Translator/blob/master/img/wellcome.png" width="70%">
+<hr>
