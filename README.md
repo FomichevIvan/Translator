@@ -1,5 +1,5 @@
 # Translator
-App for new words translating and training
+#App for new words translating and training
 
 1. Позволяет переводить слова, строки, предложения. 
 2. Игнорирует опечатки.
@@ -9,6 +9,11 @@ App for new words translating and training
 6. Технологии: Node.js, CSS, HBS, MongoAtlas
 
 
-https://github.com/FomichevIvan/Translator/tree/master/img/words.png
-https://github.com/FomichevIvan/Translator/tree/master/img/translate.png
-https://github.com/FomichevIvan/Translator/tree/master/img/wellcome.png
+<img src="https://github.com/FomichevIvan/Translator/tree/master/img/words.png" width="70%">
+<br>
+
+<img src="https://github.com/FomichevIvan/Translator/tree/master/img/translate.png" width="70%">
+<br>
+
+<img src="https://github.com/FomichevIvan/Translator/tree/master/img/wellcome.png" width="70%">
+<br>
