@@ -9,11 +9,11 @@
 6. Технологии: Node.js, CSS, HBS, MongoAtlas
 
 
-<img src="https://github.com/FomichevIvan/Translator/tree/main/img/words.png" width="70%">
+<img src="https://github.com/FomichevIvan/Translator/blob/main/img/words.png" width="70%">
 <br>
 
-<img src="https://github.com/FomichevIvan/Translator/tree/main/img/translate.png" width="70%">
+<img src="https://github.com/FomichevIvan/Translator/blob/main/img/translate.png" width="70%">
 <br>
 
-<img src="https://github.com/FomichevIvan/Translator/tree/main/img/wellcome.png" width="70%">
+<img src="https://github.com/FomichevIvan/Translator/blob/main/img/wellcome.png" width="70%">
 <br>
