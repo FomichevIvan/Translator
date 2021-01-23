@@ -1,5 +1,5 @@
 # Translator
-App for new words translating and trainig
+# App for new words translating and trainig
 
 1. Позволяет переводить слова, строки, преложения. 
 2. Исправляет опечатки.
