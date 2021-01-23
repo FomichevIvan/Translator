@@ -1,5 +1,5 @@
 # Translator
-#App for new words translating and training
+# App for new words translating and training
 
 1. Позволяет переводить слова, строки, предложения. 
 2. Игнорирует опечатки.
@@ -10,10 +10,14 @@
 
 
 <img src="https://github.com/FomichevIvan/Translator/blob/main/img/words.png" width="70%">
+<hr>
 <br>
 
+
 <img src="https://github.com/FomichevIvan/Translator/blob/main/img/translate.png" width="70%">
+<hr>
 <br>
 
 <img src="https://github.com/FomichevIvan/Translator/blob/main/img/wellcome.png" width="70%">
+<hr>
 <br>
