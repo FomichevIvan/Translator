@@ -8,11 +8,7 @@
 5. Возможность скрывать слово/перевод как в карточке, так и во всех карточках на странице. 
 6. Технологии: Node.js, CSS, HBS, MongoAtlas
 
-```sh
-cd dillinger
-npm i
-node app
-```
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 <img src="https://github.com/FomichevIvan/Translator/blob/main/img/words.png" width="70%">
 <hr>
